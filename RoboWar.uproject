@@ -15,5 +15,10 @@
 			"Name": "StaticMeshEditorExtension",
 			"Enabled": true
 		}
+	],
+	"TargetPlatforms": [
+		"WindowsNoEditor",
+		"Android",
+		"AllDesktop"
 	]
 }
