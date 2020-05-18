@@ -52,7 +52,7 @@ void ATankPlayerController::AimTowardsCrossHair()
 	FVector HitLocation; //out parameter
     if(GetSightRayHitLocation(HitLocation))
     {
-		UE_LOG(LogTemp, Warning, TEXT("Hit location = %s"), *(HitLocation.ToString()));
+		GetControlledTank()->AimAt(HitLocation);
 		   // TODO tell controlled tank to hit the aim
     }
 	
@@ -101,15 +101,32 @@ bool ATankPlayerController::GetLookVectorHitDirection(FVector LookDirection, FVe
 	FHitResult HitResults;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();
 	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
-	//if hit location successed
+	//if hit location success
 	if(GetWorld()->LineTraceSingleByChannel(HitResults,StartLocation,EndLocation,ECollisionChannel::ECC_Visibility)){
 		// set hit location
 		HitLocation = HitResults.Location;
 		return true;
      }
+	HitLocation = FVector(0);
 	return false;
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

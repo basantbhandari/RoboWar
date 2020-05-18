@@ -11,7 +11,7 @@ void ATankAIController::BeginPlay()
 	
 
 	
-	auto PlayerTank = GetPlayerController();
+	auto PlayerTank = GetPlayerTank();
 	if (!PlayerTank)
 	{
 		UE_LOG(LogTemp, Error, TEXT("AIController can't find Player controller class"));
@@ -26,13 +26,30 @@ void ATankAIController::BeginPlay()
 }
 
 
+
+ void ATankAIController::Tick(float DeltaSeconds)
+{
+	 Super::Tick(DeltaSeconds);
+
+	 if (GetPlayerTank())
+	 {
+	 	//TODO move towards the player
+	 	//Aim towards the player
+		 GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+	 	//fire if ready
+		 
+	 }
+}
+
+
+
 ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
 }
 
 
-ATank* ATankAIController::GetPlayerController() const
+ATank* ATankAIController::GetPlayerTank() const
 {
 
 	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
