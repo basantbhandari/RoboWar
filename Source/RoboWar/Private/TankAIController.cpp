@@ -6,16 +6,23 @@
 void ATankAIController::BeginPlay()
 {
 	Super::BeginPlay();
-	auto ControlledTank = GetControlledTank();
-	if (!ControlledTank)
+
+	
+	
+
+	
+	auto PlayerTank = GetPlayerController();
+	if (!PlayerTank)
 	{
-		UE_LOG(LogTemp, Error, TEXT("tank is not controlled by AI controller class"));
+		UE_LOG(LogTemp, Error, TEXT("AIController can't find Player controller class"));
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("tank is  controlled by AI controller class= %s"), *(ControlledTank->GetName()));
+		UE_LOG(LogTemp, Error, TEXT("AIController find Player controller class = %s"), *(PlayerTank->GetName()));
 	}
-
+	
+	
+	
 }
 
 
@@ -23,3 +30,20 @@ ATank* ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
 }
+
+
+ATank* ATankAIController::GetPlayerController() const
+{
+
+	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
+	if(!PlayerPawn)
+	{
+		return nullptr;
+	}
+	return Cast<ATank>(PlayerPawn);
+	
+}
+
+
+
+

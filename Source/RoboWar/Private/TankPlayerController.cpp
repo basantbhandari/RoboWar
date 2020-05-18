@@ -6,13 +6,14 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
+	
 	auto ControlledTank = GetControlledTank();
 	if(!ControlledTank)
 	{
-		UE_LOG(LogTemp, Error, TEXT("tank is not controlled by player controller class"));
+		UE_LOG(LogTemp, Error, TEXT("Tank is not controlled by player controller class"));
 	}else
 	{
-		UE_LOG(LogTemp, Error, TEXT("tank is  controlled by player controller class= %s"), *(ControlledTank->GetName()));
+		UE_LOG(LogTemp, Error, TEXT("Tank is  controlled by player controller class= %s"), *(ControlledTank->GetName()));
 	}
 	
 }
