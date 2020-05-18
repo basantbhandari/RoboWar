@@ -48,14 +48,23 @@ void ATankPlayerController::AimTowardsCrossHair()
 	{
 		return;
 	}
-	//get world location if line trace through cross hair
-	//if it hits the landscape
-	   //tell controlled tank to hit the aim
+
+	FVector HitLocation; //out parameter
+    if(GetSightRayHitLocation(HitLocation))
+    {
+		UE_LOG(LogTemp, Warning, TEXT("Hit location = %s"), *(HitLocation.ToString()));
+		   // TODO tell controlled tank to hit the aim
+    }
 	
 }
 
 
-
+//get world location if line trace through cross hair
+bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
+{
+	HitLocation = FVector(1.0f);
+	return true;
+}
 
 
 

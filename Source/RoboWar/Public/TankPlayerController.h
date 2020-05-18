@@ -21,6 +21,7 @@ class ROBOWAR_API ATankPlayerController : public APlayerController
 			virtual void Tick(float DeltaTime) override;
 			ATank* GetControlledTank() const;
 			void AimTowardsCrossHair();
+			bool GetSightRayHitLocation(FVector& HitLocation) const;
 		
 	
 };
